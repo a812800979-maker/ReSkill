@@ -2,6 +2,7 @@ services:
   - type: web
     name: reskill-server
     runtime: node
+    plan: free
     repo: https://github.com/a812800979-maker/ReSkill
     branch: main
     rootDir: server
@@ -20,6 +21,7 @@ services:
   - type: web
     name: reskill-web
     runtime: node
+    plan: free
     repo: https://github.com/a812800979-maker/ReSkill
     branch: main
     rootDir: web
