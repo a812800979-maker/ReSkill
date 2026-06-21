@@ -30,9 +30,9 @@ services:
         fromService:
           name: reskill-server
           type: web
-          property: hostUrl
+          property: host
       - key: NEXT_PUBLIC_WS_URL
         fromService:
           name: reskill-server
           type: web
-          property: hostUrl
+          property: host

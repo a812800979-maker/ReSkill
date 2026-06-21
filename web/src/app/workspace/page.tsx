@@ -259,7 +259,9 @@ function WorkspaceContent() {
   // Setup WebSocket for real mode
   useEffect(() => {
     if (mode !== "real" || !activeSessionId) return;
-    const wsUrl = process.env.NEXT_PUBLIC_WS_URL || "ws://localhost:3001";
+    const rawWs = process.env.NEXT_PUBLIC_WS_URL;
+    // Render's `host` property is a bare hostname → prefix wss://. Local dev keeps ws://localhost.
+    const wsUrl = !rawWs ? "ws://localhost:3001" : (/^wss?:\/\/|^https?:\/\//.test(rawWs) ? rawWs : `wss://${rawWs}`);
     const ws = createWSClient(`${wsUrl}/ws?sessionId=${activeSessionId}`);
     wsRef.current = ws;
 

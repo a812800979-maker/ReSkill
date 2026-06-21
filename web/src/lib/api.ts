@@ -1,4 +1,11 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+function normalizeBase(v: string | undefined): string {
+  if (!v) return "http://localhost:3001";
+  // Render's `host` property yields a bare hostname (no scheme) — add https://.
+  if (!/^https?:\/\//.test(v)) return `https://${v}`;
+  return v;
+}
+
+const API_URL = normalizeBase(process.env.NEXT_PUBLIC_API_URL);
 
 export async function createSession() {
   const res = await fetch(`${API_URL}/api/sessions`, { method: "POST" });
